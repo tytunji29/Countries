@@ -18,7 +18,7 @@ export class countryComponent implements OnInit, OnDestroy {
   currentId: number;
   dtOptions: any = {};
   countries:  any[] = [];
-
+  viewCountry: any[] =[];
   //singleRuleRequestData: any = {};
 
   cotForm: FormGroup;
@@ -88,22 +88,21 @@ export class countryComponent implements OnInit, OnDestroy {
 }
 		);
 	}
-  // viewRec(content: any, id: number) {
-  //   this.mktOpsSvc.getSingleBascViolatedRuleRequest(id).subscribe(
-  //     res => {
-  //       if (res.status) {
-  //         this.singleRuleRequestData = res.data;
-  //         this.modalRef = this.modalService.open(content, {
-  //           ariaLabelledBy: "modal-basic-title",
-  //           size: "lg"
-  //         });
-  //       }
-  //     },
-  //     (err: HttpErrorResponse) => {
-  //       this.logSvc.print(err);
-  //     }
-  //   );
-  // }
+  viewAction(content: any, id: number) {
+    this.cotSvc.getSingleCountry(id).subscribe(
+      res => {
+        if (res.status) {
+          this.viewCountry = res.data;
+          this.modalRef = this.modalService.open(content, {
+            ariaLabelledBy: "modal-basic-title",
+            size: "lg"
+          });
+        }
+      },
+      (err: HttpErrorResponse) => {
+      }
+    );
+  }
 
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();

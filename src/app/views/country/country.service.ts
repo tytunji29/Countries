@@ -27,6 +27,9 @@ export class countryService {
   getAllCountries(): Observable<any> {
     return this.http.get<any>(this.apiUrl + "Country/All");
   }
+  getSingleCountry(id: number): Observable<any> {
+    return this.http.get<any>(this.apiUrl + `Country/ById/${id}`);
+  }
 
   
 }
